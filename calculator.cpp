@@ -1,52 +1,51 @@
 #include <iostream>
-#include <vector>
-#include <sstream>
-#include <string>
 
 using namespace std;
 
-// º¯ÊıÉùÃ÷
-vector<double> parseInput(const string& input);
-double calculate(const vector<double>& numbers, char operation);
-
 int main() {
-    string input;
-    char operation;
-    
-    // ÌáÊ¾ÓÃ»§ÊäÈë
-    cout << "ÇëÊäÈëÔËËã·û (+, -, *, /): ";
-    cin >> operation;
-    cin.ignore(); // ºöÂÔ»»ĞĞ·û
+    double num1, num2;
+    char op;
+    double result;
 
-    cout << "ÇëÊäÈëÊı×Ö£¬ÓÃ¿Õ¸ñ·Ö¸ô: ";
-    getline(cin, input); // »ñÈ¡ÕûĞĞÊäÈë
+    // æç¤ºç”¨æˆ·è¾“å…¥ç¬¬ä¸€ä¸ªæ•°å­—
+    cout << "è¯·è¾“å…¥ç¬¬ä¸€ä¸ªæ•°å­—: ";
+    cin >> num1;
 
-    // ½âÎöÓÃ»§ÊäÈë
-    vector<double> numbers = parseInput(input);
+    // æç¤ºç”¨æˆ·è¾“å…¥è¿ç®—ç¬¦
+    cout << "è¯·è¾“å…¥è¿ç®—ç¬¦ (+, -, *, /): ";
+    cin >> op;
 
-    // ¼ì²éÊäÈëÊÇ·ñÓĞĞ§
-    if (numbers.empty()) {
-        cout << "ÎŞĞ§µÄÊäÈë¡£" << endl;
-        return 1;
+    // æç¤ºç”¨æˆ·è¾“å…¥ç¬¬äºŒä¸ªæ•°å­—
+    cout << "è¯·è¾“å…¥ç¬¬äºŒä¸ªæ•°å­—: ";
+    cin >> num2;
+
+    // æ ¹æ®è¿ç®—ç¬¦è¿›è¡Œè®¡ç®—
+    switch(op) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            // æ£€æŸ¥é™¤æ•°æ˜¯å¦ä¸ºé›¶
+            if (num2 != 0) {
+                result = num1 / num2;
+            } else {
+                cout << "é”™è¯¯: é™¤æ•°ä¸èƒ½ä¸ºé›¶" << endl;
+                return 1;
+            }
+            break;
+        default:
+            cout << "é”™è¯¯: ä¸æ”¯æŒçš„è¿ç®—ç¬¦" << endl;
+            return 1;
     }
 
-    // Ö´ĞĞ¼ÆËã²¢Êä³ö½á¹û
-    double result = calculate(numbers, operation);
-    cout << "½á¹û: " << result << endl;
+    // è¾“å‡ºç»“æœ
+    cout << "ç»“æœ: " << result << endl;
 
     return 0;
 }
-
-// ½âÎöÓÃ»§ÊäÈëµÄÊı×Ö
-vector<double> parseInput(const string& input) {
-    vector<double> numbers;
-    stringstream ss(input);
-    double number;
-
-    while (ss >> number) {
-        numbers.push_back(number);
-    }
-
-    return numbers;
-}
-
