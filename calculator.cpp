@@ -1,26 +1,22 @@
 #include <iostream>
-
 using namespace std;
 
 int main() {
     double num1, num2;
-    char op;
-    double result;
+    char operation;
 
-    // 提示用户输入第一个数字
-    cout << "请输入第一个数字: ";
+    cout << "Enter first number: ";
     cin >> num1;
 
-    // 提示用户输入运算符
-    cout << "请输入运算符 (+, -, *, /): ";
-    cin >> op;
+    cout << "Enter an operator (+, -, *, /): ";
+    cin >> operation;
 
-    // 提示用户输入第二个数字
-    cout << "请输入第二个数字: ";
+    cout << "Enter second number: ";
     cin >> num2;
 
-    // 根据运算符进行计算
-    switch(op) {
+    double result;
+
+    switch (operation) {
         case '+':
             result = num1 + num2;
             break;
@@ -31,21 +27,22 @@ int main() {
             result = num1 * num2;
             break;
         case '/':
-            // 检查除数是否为零
             if (num2 != 0) {
                 result = num1 / num2;
             } else {
-                cout << "错误: 除数不能为零" << endl;
+                cout << "Error: Division by zero is not allowed." << endl;
                 return 1;
             }
             break;
         default:
-            cout << "错误: 不支持的运算符" << endl;
+            cout << "Error: Invalid operator." << endl;
             return 1;
     }
 
-    // 输出结果
-    cout << "结果: " << result << endl;
+    cout << "Result: " << result << endl;
+
+    // 添加这一行代码使程序暂停，等待用户按下任意键
+    system("pause"); // 仅适用于Windows
 
     return 0;
 }
